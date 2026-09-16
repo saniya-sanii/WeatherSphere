@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>WeatherSphere</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+    <!-- ==========================
+         Navigation Bar
+    =========================== -->
+
+    <nav>
+
+        <h2 class="logo">🌦 WeatherSphere</h2>
+
+        <div class="search-box">
+
+            <input
+                type="text"
+                id="cityInput"
+                placeholder="Enter city name">
+
+            <button id="searchBtn">
+                Search
+            </button>
+
+        </div>
+
+    </nav>
+
+    <!-- Error Alert Container -->
+    <div id="errorContainer" class="error-container hidden">
+        <span class="error-icon">⚠️</span>
+        <span id="errorMessage" class="error-message">City not found. Please try again.</span>
+        <button id="closeErrorBtn" class="close-error-btn">&times;</button>
+    </div>
+
+    <!-- Loading Indicator Overlay -->
+    <div id="loadingIndicator" class="loading-container hidden">
+        <div class="loading-card">
+            <div class="loader"></div>
+            <p>Loading weather data...</p>
+        </div>
+    </div>
+
+    <!-- ==========================
+         Dashboard Layout Grid
+    =========================== -->
+    <main class="dashboard-grid">
+
+        <!-- ==========================
+             Current Weather
+        =========================== -->
+        <section class="current-weather">
+
+            <h2>Current Weather</h2>
+
+            <div class="weather-card">
+
+                <div class="weather-icon">
+
+                    <img
+                        id="weatherIcon"
+                        src=""
+                        alt="Weather icon">
+
+                </div>
+
+
+                <div class="weather-info">
+
+                    <h1 id="temperature">
+                        28°C
+                    </h1>
+
+                    <h3 id="city">
+                        Davangere
+                    </h3>
+
+                    <p id="condition">
+                        Partly Cloudy
+                    </p>
+
+                    <p id="feelsLike">
+                        Feels like 29°C
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- Weather Details -->
+            <div class="weather-details">
+
+                <div class="detail-item">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                        </svg>
+                    </span>
+                    <p id="date">
+                        Sunday, 16 August 2026
+                    </p>
+                </div>
+
+                <div class="detail-item">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+                            <path d="M17 18a5 5 0 0 0-10 0"></path>
+                            <path d="M12 2v7"></path>
+                            <path d="m9 5 3-3 3 3"></path>
+                            <path d="M2 22h20"></path>
+                            <path d="M19 13l-1.5-1.5"></path>
+                            <path d="M5 13l1.5-1.5"></path>
+                        </svg>
+                    </span>
+                    <p id="sunrise">
+                        Sunrise
+                    </p>
+                </div>
+
+                <div class="detail-item">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="18" height="18">
+                            <path d="M17 18a5 5 0 0 0-10 0"></path>
+                            <path d="M12 9v7"></path>
+                            <path d="m9 13 3 3 3-3"></path>
+                            <path d="M2 22h20"></path>
+                            <path d="M19 13l-1.5-1.5"></path>
+                            <path d="M5 13l1.5-1.5"></path>
+                        </svg>
+                    </span>
+                    <p id="sunset">
+                        Sunset
+                    </p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ==========================
+             Hourly Forecast
+        =========================== -->
+        <section class="hourly">
+
+            <h2>Hourly Forecast</h2>
+
+            <div class="hourly-container" id="hourlyContainer">
+                <!-- Dynamically populated -->
+            </div>
+
+        </section>
+
+
+        <!-- ==========================
+             Five-Day Forecast
+        =========================== -->
+        <section class="forecast">
+
+            <h2>5-Day Forecast</h2>
+
+            <div
+                class="forecast-container"
+                id="forecastContainer">
+                <!-- Dynamically populated -->
+            </div>
+
+        </section>
+
+
+        <!-- ==========================
+             Weather Highlights
+        =========================== -->
+        <section class="highlights">
+
+            <h2>Today's Highlights</h2>
+
+            <div class="highlight-container">
+
+                <div class="card">
+                    <div class="highlight-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+                            <path d="M12 22a7 7 0 0 0 7-7c0-4.3-7-11-7-11S5 10.7 5 15a7 7 0 0 0 7 7z"></path>
+                        </svg>
+                    </div>
+                    <div class="highlight-info">
+                        <h3>Humidity</h3>
+                        <p id="humidity">70%</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="highlight-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+                            <path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"></path>
+                        </svg>
+                    </div>
+                    <div class="highlight-info">
+                        <h3>Wind Speed</h3>
+                        <p id="wind">15 km/h</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="highlight-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+                            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+                            <circle cx="12" cy="12" r="8"></circle>
+                            <path d="m12 12 3-3"></path>
+                        </svg>
+                    </div>
+                    <div class="highlight-info">
+                        <h3>Pressure</h3>
+                        <p id="pressure">1012 hPa</p>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="highlight-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>
+                    </div>
+                    <div class="highlight-info">
+                        <h3>Visibility</h3>
+                        <p id="visibility">8 km</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- ==========================
+         Footer
+    =========================== -->
+    <footer>
+
+        <p>
+            © 2026 WeatherSphere | Built by Saniya
+        </p>
+
+    </footer>
+
+
+    <!-- ==========================
+         JavaScript
+    =========================== -->
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>
